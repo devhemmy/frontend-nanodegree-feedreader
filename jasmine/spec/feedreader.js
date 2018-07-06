@@ -27,46 +27,100 @@ $(function() {
         });
 
 
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a URL defined
-         * and that the URL is not empty.
+        /* thi is a test to make sure that every elemet in the object
+         * has a url and that url is not empty by looping through every element
+         * in the object and check on  them
          */
+         it('has a URL', function(){
+           allFeeds.forEach(function(val){
+             expect(val.url).toBeDefined();
+             expect(val.url.length).not.toBe(0);
+           });
+         });
 
 
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a name defined
-         * and that the name is not empty.
+        /* this is a test that does just like the previous one
+         * but on names this time instead of url
          */
+
+         it('has a name', function(){
+           allFeeds.forEach(function(val){
+             expect(val.name).toBeDefined();
+             expect(val.name).not.toBe(0);
+           });
+         });
+
     });
 
 
-    /* TODO: Write a new test suite named "The menu" */
+    /* a new test suite named "The menu" */
+    describe("The menu",function(){
 
-        /* TODO: Write a test that ensures the menu element is
-         * hidden by default. You'll have to analyze the HTML and
-         * the CSS to determine how we're performing the
-         * hiding/showing of the menu element.
-         */
+      /* this test making sure the menu is hidden by default
+       * by checking it has the hidden class already in the body
+       */
+       it('is hidden by default',function(){
+         expect($('body').hasClass('menu-hidden')).toBe(true);
 
-         /* TODO: Write a test that ensures the menu changes
-          * visibility when the menu icon is clicked. This test
-          * should have two expectations: does the menu display when
-          * clicked and does it hide when clicked again.
-          */
+       });
 
-    /* TODO: Write a new test suite named "Initial Entries" */
+       /* this test makes a menu click twice
+        * to check wether if the visibility changes on each click or not
+        */
 
-        /* TODO: Write a test that ensures when the loadFeed
-         * function is called and completes its work, there is at least
-         * a single .entry element within the .feed container.
-         * Remember, loadFeed() is asynchronous so this test will require
-         * the use of Jasmine's beforeEach and asynchronous done() function.
-         */
 
-    /* TODO: Write a new test suite named "New Feed Selection" */
+        it('changes visibility',function(){
+          var menu = $('a.menu-icon-link');
+          menu.click();
+          expect($('body').hasClass('menu-hidden')).toBe(false);
+          menu.click();
+          expect($('body').hasClass('menu-hidden')).toBe(true);
+        });
 
-        /* TODO: Write a test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
-         */
+    });
+
+
+
+    /* a new test suite named "Initial Entries" */
+    describe('Initial Entries',function(){
+      var container = $('.feed')
+      beforeEach(function(done){
+        loadFeed(0,function(){
+          done();
+        });
+      });
+      /* this test makes sure that the loadFeed function has completed already
+       * first by calling the beforeEach function then check for
+       * childs with the class of enter-link to make sure that that function
+       * has completed successfully and the childs has been appended
+       */
+       it('function completed',function(done){
+         expect(container.children().hasClass('entry-link')).toBe(true);
+         done();
+       });
+
+    });
+
+
+
+    /* a new test suite named "New Feed Selection" */
+    describe('New Feed Selection', function(){
+      beforeEach(function(done){
+        loadFeed(0,function(){
+          done();
+        });
+      });
+
+      /* this test makes sure that the element changes by loading
+       * the loadFeed function by draging thoes elements from a certain link
+       */
+
+       it('actually changes',function(done){
+         var classEntryLink = $(".entry-link");
+         expect(classEntryLink.length).toBe(10);
+         done();
+       });
+
+    });
+
 }());

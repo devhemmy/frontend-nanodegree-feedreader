@@ -67,6 +67,7 @@ function init() {
                   */
                  entries.forEach(function(entry) {
                      container.append(entryTemplate(entry));
+                     
                  });
 
                  if (cb) {
@@ -98,6 +99,7 @@ $(function() {
         feedItemTemplate = Handlebars.compile($('.tpl-feed-list-item').html()),
         feedId = 0,
         menuIcon = $('.menu-icon-link');
+
 
     /* Loop through all of our feeds, assigning an id property to
      * each of the feeds based upon its index within the array.
