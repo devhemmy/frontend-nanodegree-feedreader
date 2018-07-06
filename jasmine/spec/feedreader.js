@@ -46,7 +46,7 @@ $(function() {
          it('has a name', function(){
            allFeeds.forEach(function(val){
              expect(val.name).toBeDefined();
-             expect(val.name).not.toBe(0);
+             expect(val.name.length).not.toBe(0);
            });
          });
 
@@ -105,19 +105,22 @@ $(function() {
 
     /* a new test suite named "New Feed Selection" */
     describe('New Feed Selection', function(){
+        var container1 = $('.feed');
       beforeEach(function(done){
         loadFeed(0,function(){
-          done();
+          loadFeed(1,function(){
+            done();
+          });
         });
       });
+        var container2 = $('.feed');
 
       /* this test makes sure that the element changes by loading
        * the loadFeed function by draging thoes elements from a certain link
        */
 
        it('actually changes',function(done){
-         var classEntryLink = $(".entry-link");
-         expect(classEntryLink.length).toBe(10);
+         expect(container1).not.toBe(container2);
          done();
        });
 
