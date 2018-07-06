@@ -105,22 +105,24 @@ $(function() {
 
     /* a new test suite named "New Feed Selection" */
     describe('New Feed Selection', function(){
-        var container1 = $('.feed');
       beforeEach(function(done){
+
         loadFeed(0,function(){
+          // Feed 0 content
+          firstUrl = allFeeds[0].url;
           loadFeed(1,function(){
+            //Feed 1 content
+            secUrl = allFeeds[1].url;
             done();
           });
         });
       });
-        var container2 = $('.feed');
 
       /* this test makes sure that the element changes by loading
        * the loadFeed function by draging thoes elements from a certain link
        */
-
        it('actually changes',function(done){
-         expect(container1).not.toBe(container2);
+         expect(firstUrl).not.toBe(secUrl);
          done();
        });
 
