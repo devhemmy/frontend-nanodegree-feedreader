@@ -12,7 +12,7 @@ you can install the game by cloning the reparatory from this link
 
 https://github.com/koi20555/frontend-nanodegree-feedreader
 
-##How the Game Work
+##How the tests Work
 
 once the page is loaded all u have to do is to scroll down so you can see all of the tests passing correctly and the application
 has no problems or issues
